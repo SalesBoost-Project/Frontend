@@ -9,7 +9,7 @@ const authStore = useAuthStore();
 const api = axios.create({
 //  baseURL: 'http://localhost:8080/api',
 //  baseURL: 'http://43.201.156.20/api',  
-  baseURL: 'https://cdn.samdasoo.click/api',
+baseURL: 'https://api.samdasoo.click/api',
   withCredentials: true, // 쿠키를 포함하여 서버에 요청 보냄
 });
 
