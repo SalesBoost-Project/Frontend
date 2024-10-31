@@ -25,5 +25,6 @@ jobs:
           aws s3 cp ./ s3://salesboost-front-page/ --recursive
 
       - name: CloudFront cache invalid
-        run: aws cloudfront create-invalidation --distribuation-id E1MSQFXAU4SHET --path "/*"
+        run: aws cloudfront create-invalidation --distribution-id E1MSQFXAU4SHET --path "/*"
+
 
