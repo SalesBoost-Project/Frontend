@@ -1,0 +1,29 @@
+name: CI/CD Front Pipeline
+
+on:
+  push:
+    branches:
+      - develop
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the code
+        uses: actions/checkout@v4
+
+      - name: AWS credentials 설정
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-region: ap-northeast-2
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRETE_ACCESS_KEY }}
+          
+
+      - name: 기존 S3 파일 삭재 & 재 업로드
+        run: |
+          aws s3 rm --recursive s3://salesboost-front-page/
+          aws s3 cp ./ s3://salesboost-front-page/ --recursive
+
+      - name: CloudFront cache invalid
+        run: aws cloudfront create-invalidation --distribuation-id E1MSQFXAU4SHET --path "/*"
+
