@@ -4,12 +4,24 @@ on:
   push:
     branches:
       - develop
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Check out the code
         uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build Vue.js app
+        run: npm run build
 
       - name: AWS credentials 설정
         uses: aws-actions/configure-aws-credentials@v4
@@ -18,13 +30,10 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRETE_ACCESS_KEY }}
           
-
-      - name: 기존 S3 파일 삭재 & 재 업로드
+      - name: 기존 S3 파일 삭제 & 재 업로드
         run: |
           aws s3 rm --recursive s3://salesboost-front-page/
-          aws s3 cp ./ s3://salesboost-front-page/ --recursive
+          aws s3 cp ./dist s3://salesboost-front-page/ --recursive
 
       - name: CloudFront cache invalid
         run: aws cloudfront create-invalidation --distribution-id E1MSQFXAU4SHET --path "/*"
-
-
