@@ -27,15 +27,15 @@
     </div>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import api from '@/api/axiosinterceptor';
 import {onMounted, ref} from 'vue';
 
-interface UserDepartmentDto {
-  userId: number;            // 유저의 PK
-  userName: string;       // 유저 이름
-  userDeptName: string; // 부서 이름
-}
+// interface UserDepartmentDto {
+//   userId: number;            // 유저의 PK
+//   userName: string;       // 유저 이름
+//   userDeptName: string; // 부서 이름
+// }
 
 const emit = defineEmits(['search'])
 
@@ -66,7 +66,7 @@ const getPersonInChargeList=async()=>{
         // console.log(data.result)
      
         if(data.code==200){
-                userOptions.value = data.result.map((user:UserDepartmentDto)=>({
+                userOptions.value = data.result.map((user)=>({
                 id:user.userId,
                 displayName: `${user.userName} (${user.userDeptName})`
             }));

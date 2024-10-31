@@ -5,7 +5,6 @@ import { useCustomizerStore } from '@/stores/customizer';
 import HorizontalItems from './horizontalItems';
 import NavItem from './NavItem/Index.vue';
 import NavCollapse from './NavCollapse/Index.vue';
-import VerticalSidebar from '../vertical-sidebar/VerticalSidebar.vue';
 
 const customizer = useCustomizerStore();
 const sidebarMenu = shallowRef(HorizontalItems);
