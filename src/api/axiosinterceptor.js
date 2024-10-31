@@ -7,7 +7,8 @@ const authStore = useAuthStore();
 
 // Axios 인스턴스 생성
 const api = axios.create({
-  baseURL: 'http://localhost:8080/api',
+//  baseURL: 'http://localhost:8080/api',
+  baseURL: 'http://43.201.156.20/api',  
   withCredentials: true, // 쿠키를 포함하여 서버에 요청 보냄
 });
 
