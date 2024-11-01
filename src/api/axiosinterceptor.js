@@ -9,7 +9,7 @@ const authStore = useAuthStore();
 const api = axios.create({
 //  baseURL: 'http://localhost:8080/api',
 //  baseURL: 'http://43.201.156.20/api',  
-baseURL: 'https://api.samdasoo.click/api',
+baseURL: 'https://www.samdasoo.click/api',
   withCredentials: true, // 쿠키를 포함하여 서버에 요청 보냄
 });
 
@@ -48,7 +48,7 @@ api.interceptors.response.use(
         if(data.code===425){ 
             try {
                 // Access Token 재발급 요청 
-                const res = await axios.post('http://localhost:8080/api/users/reissue', null, {
+                const res = await axios.post('https://api.samdasoo.click/api/users/reissue', null, {
                   withCredentials: true,
                 });
         
